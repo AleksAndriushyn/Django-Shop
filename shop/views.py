@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import TemplateView, DetailView, FormView
-
+from cart.forms import CartAddProductForm
 from .forms import UserCreateForm
 from .models import Product, Category
 
@@ -22,8 +22,11 @@ def product_list(request, category_slug=None):
 
 
 def product_detail(request, id, slug):
+    cart_product_form = CartAddProductForm()
     product = get_object_or_404(Product, id=id, slug=slug, available=True)
-    return render(request, 'shop/product/product_detail.html', {'product': product})
+    return render(request, 'shop/product/product_detail.html', {'product': product,
+                                                                'cart_product_form': cart_product_form,
+                                                                })
 
 
 class RegisterFormView(FormView):

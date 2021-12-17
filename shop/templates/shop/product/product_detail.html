@@ -3,26 +3,24 @@
 {% load static %}
 
 {% block content %}
-<div id="sidebar">
-    <h3>Categories</h3>
-    <ul>
-        <li {% if not category %} class="selected" {% endif %}>
-            <a href="{% url 'shop:product_list' %}">All</a>
-        </li>
-        {% for c in categories %}
-        <li {% if category.slug == c.slug %} class="selected" {% endif %}>
-            <a href="{{c.get_absolute_url}}">{{c.name}}</a>
-        </li>
-        {% endfor %}
-    </ul>
-</div>
+
 <div class="product-detail">
     <h1> {% if product %}{{ product }}{% else %}Products{% endif %}</h1>
     <div class="item">
         <img src="{% if product.image %} {{ product.image.url }} {% else %} {% static " img/no_image.png" %} {% endif %}">
-        <div class="description">{{product.description}}</div>
-        <div class="availbl">{%if product.available %} Available {% else %} On sale soon {%endif%}</div>
+        <h2>
+            <a href="{{ product.category.get_absolute_url }}">
+                {{ product.category }}
+            </a>
+        </h2>
+        <div class="description">{{ product.description|linebreaks }}</div>
         <div class="price">${{product.price}}</div>
+        <form action="{% url "cart:cart_add" product.id %}" method="post">
+            {{ cart_product_form }}
+            {% csrf_token %}
+            <input type="submit" value="Add to cart">
+        </form>
+
     </div>
 </div>
 {% endblock %}
