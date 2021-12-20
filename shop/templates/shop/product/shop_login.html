@@ -1,16 +1,22 @@
-{% extends 'shop/product/product_list.html' %}
+{% extends "shop/base_generic.html" %}
 
 {% block login %}
-    <form action="" method="post">
-      {% csrf_token %}
-      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
-      {% for field in form %}
-        <label>{{field.label}}</label>
-        <p>{{field}}</p>
-          {% if field.errors %}
-            <p>{{field.errors}}</p>
-          {% endif %}
-      {% endfor %}
-      <button type="submit">Login</button>
-    </form>
+  <form id="myForm" action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <label>{{field.label}}</label>
+      <p>{{field}}</p>
+      {% if field.errors %}
+        <p>{{field.errors}}</p>
+      {% endif %}
+    {% endfor %}
+    <button type="submit" >Login</button>
+    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+  </form>
+  <script>
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+  </script>
 {% endblock %}
+

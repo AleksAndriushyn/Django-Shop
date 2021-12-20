@@ -1,22 +1,28 @@
-{% extends 'shop/product/product_list.html' %}
-
+{% extends "shop/base_generic.html" %}
 
 {% block login %}
-    <form action="shop_register" method="post">{% csrf_token %}
-      {% for field in form %}
-      <div class="form-group">
-        <label for="">{{field.label}}</label>
-        <div>{{field}}</div>
-        {% if field.errors %}
-            <p>{{field.errors}}</p>
-        {% endif %}
-      </div>
-   {% endfor %}
-      <p id = 'error-mail'></p>
-      <!--{{form.as_p}}-->
-      <!-- as_p для того, чтобы каждый элемент формы был с новой строки -->
-
-      <button id = 'btn' type="submit">Register</button>
+    <form id="myForm" action="shop_register" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for="">{{field.label}}</label>
+            <div>{{field}}</div>
+            {% if field.errors %}
+                <p>{{field.errors}}</p>
+            {% endif %}
+        {% endfor %}
+        <p id='error-mail'></p>
+        <button type="submit">Register</button>
+        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
+    <script>
+        function closeForm() {
+          document.getElementById("myForm").style.display = "none";
+        }
+    </script>
 {% endblock %}
+
+
+
+
+
 
