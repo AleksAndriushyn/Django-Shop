@@ -86,13 +86,23 @@ td input[type="submit"] {
 }
 
 form p label, form p input {
-    float:center;
+    float:left;
     clear:both;
 }
 
 form p label {
     font-size:14px;
     padding-bottom:4px;
+}
+form p input {
+    width:300px;
+    font-size:13px;
+    margin-bottom:10px;
+    padding:10px 12px;
+    border:0;
+    background:#efefef;
+    color:#666;
+    border-radius:4px;
 }
 
 .errorlist{
@@ -363,7 +373,6 @@ form div.field {
     padding:6px 12px;
     border:0;
     background:#efefef;
-    color:#666;
     border-radius:4px;
 }
 
@@ -377,21 +386,24 @@ form div.field {
     margin-left: 38%;
     margin-top: 10%;
 }
-
+.block-login form h1{
+    margin-bottom:20px;
+}
 .block-login form label {
     display: block;
     color: gray;
-    text-align: center;
     font-size: 24px;
-    margin: 1px auto;
-    margin-top:10px;
+    float:none;
 }
 
 .block-login form input {
     display: block;
     margin: auto;
+    float: none;
+    color: black;
+
+    background-color: white;
     width: 250px;
-    text-align: center;
     border: 2px solid black;
     border-radius: 15px;
     height: 30px;

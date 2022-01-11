@@ -2,7 +2,8 @@ from django.contrib.auth import logout, login
 from django.contrib.auth.forms import AuthenticationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from django.views.generic import TemplateView, DetailView, FormView
+from django.views.generic import TemplateView, FormView
+from rest_framework import generics
 from cart.forms import CartAddProductForm
 from .forms import UserCreateForm
 from .models import Product, Category

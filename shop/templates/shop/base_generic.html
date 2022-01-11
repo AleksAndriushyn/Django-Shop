@@ -18,28 +18,25 @@
         {% endif %}
     </div>
 </div>
-{%if user.is_authenticated%}
-    <div id="subheader">
-        <div class="cart">
-            {% with total_items=cart|length %}
+<div id="subheader">
+    <div class="cart">
+        {% with total_items=cart|length %}
             {% if total_items > 0 %}
-            Your cart:
-            <a href="{% url "cart:cart_detail" %}">
-            {{ total_items }} item{{ total_items|pluralize }},
-            ${{ cart.get_total_price }}
-            </a>
+                Your cart:
+                <a href="{% url "cart:cart_detail" %}">
+                    {{ total_items }} item{{ total_items|pluralize }},
+                    ${{ cart.get_total_price }}
+                </a>
             {% else %}
-            Your cart is empty.
+                Your cart is empty.
             {% endif %}
-            {% endwith %}
-        </div>
+        {% endwith %}
     </div>
-    <div id="content">
-            {% block content %}
-            {% endblock %}
-    </div>
-{%else%}
-    <div class="block-login">{%block login%}{%endblock%}</div>
-{%endif%}
+</div>
+<div id="content">
+    {% block content %}
+    {% endblock %}
+</div>
+<div class="block-login">{%block login%}{%endblock%}</div>
 </body>
 </html>
